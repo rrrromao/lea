@@ -7,7 +7,7 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'PlanosEdu - Repositório de Planos de Aula para Professores',
+  title: 'Parque de Planos - Planos para o ensino da Arte',
   description: 'Encontre planos de aula de qualidade para Artes Visuais, Música, Dança e Teatro. Um repositório colaborativo de atividades educacionais para professores.',
   generator: 'v0.app',
   icons: {
