@@ -3,7 +3,7 @@ import type { PlanoDeAula } from "./types"
 export const planosDeAula: PlanoDeAula[] = [
   {
     id: "1",
-    titulo: "Sequência Didática de Recepção Fílmica",
+    titulo: "Assistir filme como uma prática criativa",
     descricao: "Atividade de educação audiovisual centrada na exibição de um filme seguida de práticas expressivas que desenvolvem a espectatorialidade como construção plástica e criativa, fugindo da mera interpretação ou letramento.",
     objetivos: [
       "Desenvolver a espectatorialidade audiovisual como prática expressiva",
@@ -11,14 +11,14 @@ export const planosDeAula: PlanoDeAula[] = [
       "Promover a expressão individual e coletiva após a exibição",
       "Relacionar o cotidiano dos estudantes com as imagens vistas"
     ],
-    metodologia: "Primeira aula: preparação e exibição. O professor apresenta brevemente o filme sem revelar detalhes da narrativa, criando expectativa. Os estudantes assistem ao filme com atenção livre, sem roteiro ou ficha de observação prévia. Segunda aula: criação expressiva. Cada estudante recebe papel e materiais e é convidado a criar um desenho em quadrinhos a partir de uma cena, sensação ou imagem que ficou na memória após a exibição. Não há certo ou errado: o ponto de partida é a experiência de cada um. Terceira aula: roda de conversa e exposição. As produções são expostas na sala e os estudantes são convidados a falar sobre suas escolhas. O professor medeia a conversa conectando as diferentes leituras do filme, valorizando a pluralidade de percepções.",
+    metodologia: "Primeira aula: Exibição do Filme 1. O professor apresenta brevemente o filme sem revelar detalhes da narrativa, criando expectativa. Os estudantes assistem ao filme com atenção livre, sem roteiro ou ficha de observação prévia. A professora pode fazer provocações enquanto o filme é exibido, como a figura história do 'explicador'. Após a exibição do filme, é pedido para que cada estudante desenhe uma imagem a partir do filme, a que mais lhe marcou. É possível pedir para que eles apresentem a imagem e falem sobre ela para a turma toda. Segunda aula: exibição do Filme 2.  Cada estudante recebe papel e materiais e é convidado a criar um desenho em quadrinhos que conte a história do filme, sensação ou imagem que ficou na memória após a exibição. Não há certo ou errado: o ponto de partida é a experiência de cada um. Terceira aula: exibição do Filme 3. Com a turma dividida em grupos, cada pessoa do grupo deve desenhar um momento diferente do filme. Após cada um do grupo fazer o seu desenho, peça para ordenarem os desenhos a partir do que viram no filme. Apresente a ideia de linha do tempo e peça para que eles coloquem as imagens na linha. Quarta aula: Exiba o quarto filme. Peça para fazerem a linha do tempo do filme. Apresente alguns cartazes de filmes e converse com a turma sobre para quê eles servem. Peça para cada grupo escolher um momento do filme e fazer um cartaz para ele.",
     materiais: ["Projetor ou televisão para exibição", "Papel sulfite ou cartolina", "Lápis, canetas e materiais de colorir", "Tesoura e cola (para cartazes)"],
     duracao: "2 a 3 aulas de 50 minutos",
     avaliacao: "Participação na exibição e na roda de conversa. Produção expressiva realizada após o filme. Não há resposta certa: o critério é o engajamento e a expressão genuína.",
     linguagemArtistica: "Audiovisual",
-    faixaEtaria: "9-11 anos (4º ao 6º ano)",
-    recursos: ["Projetor/Datashow", "Papel e papelão", "Materiais de baixo custo"],
-    conteudos: ["Cinema", "Educação audiovisual", "Expressão plástica", "Leitura de imagens"],
+    faixaEtaria: "9-11 anos (3º ao 6º ano)",
+    recursos: ["Quatro curtas-metragens", "Projetor/Datashow", "Papel e papelão", "Materiais de baixo custo"],
+    conteudos: ["Cinema", "Educação audiovisual", "Cinema-Educação", "Educomunicação", "Recepção de filmes", "Leitura de imagens"],
     autor: "Prof. Rafael Romão Silva",
     dataCriacao: "2026-05-24",
     avaliacaoMedia: 5.0,
