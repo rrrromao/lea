@@ -18,7 +18,12 @@ export const planosDeAula: PlanoDeAula[] = [
     linguagemArtistica: "Artes Visuais",
     faixaEtaria: "9-11 anos (4º ao 6º ano)",
     recursos: ["Projetor/Datashow", "Papel e papelão", "Materiais de baixo custo"],
-    conteudo
+    conteudos: ["Cinema", "Educação audiovisual", "Expressão plástica", "Leitura de imagens"],
+    autor: "Prof. Rafael Romão Silva",
+    dataCriacao: "2026-05-24",
+    avaliacaoMedia: 5.0,
+    numeroAvaliacoes: 1
+  }
 ]
 
 // Extrair todos os conteúdos únicos dos planos
