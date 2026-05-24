@@ -11,7 +11,7 @@ export const planosDeAula: PlanoDeAula[] = [
       "Promover a expressão individual e coletiva após a exibição",
       "Relacionar o cotidiano dos estudantes com as imagens vistas"
     ],
-    metodologia: "Exibição do filme escolhido pelo professor, preferencialmente de curta ou média duração. Após a exibição, proposta de uma atividade expressiva à escolha: desenho em quadrinhos sobre cenas ou sensações, criação de uma linha do tempo da narrativa, ou elaboração de um cartaz/convite para o filme. Roda de conversa final sobre as produções.",
+    metodologia: "Primeira aula: preparação e exibição. O professor apresenta brevemente o filme sem revelar detalhes da narrativa, criando expectativa. Os estudantes assistem ao filme com atenção livre, sem roteiro ou ficha de observação prévia. Segunda aula: criação expressiva. Cada estudante recebe papel e materiais e é convidado a criar um desenho em quadrinhos a partir de uma cena, sensação ou imagem que ficou na memória após a exibição. Não há certo ou errado: o ponto de partida é a experiência de cada um. Terceira aula: roda de conversa e exposição. As produções são expostas na sala e os estudantes são convidados a falar sobre suas escolhas. O professor medeia a conversa conectando as diferentes leituras do filme, valorizando a pluralidade de percepções.",
     materiais: ["Projetor ou televisão para exibição", "Papel sulfite ou cartolina", "Lápis, canetas e materiais de colorir", "Tesoura e cola (para cartazes)"],
     duracao: "2 a 3 aulas de 50 minutos",
     avaliacao: "Participação na exibição e na roda de conversa. Produção expressiva realizada após o filme. Não há resposta certa: o critério é o engajamento e a expressão genuína.",
