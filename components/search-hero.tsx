@@ -15,10 +15,10 @@ export function SearchHero({ busca, onBuscaChange, totalResultados }: SearchHero
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="mx-auto max-w-2xl text-center">
           <h1 className="text-3xl font-bold tracking-tight text-balance md:text-4xl lg:text-5xl">
-            Encontre o plano de aula perfeito
+            Encontre um plano de aula para se inspirar!
           </h1>
           <p className="mt-4 text-muted-foreground text-pretty md:text-lg">
-            Explore nossa coleção de atividades para Artes Visuais, Música, Dança e Teatro. 
+            Explore nossa coleção de atividades para Artes: audiovisual, dança, música, teatro visuais e mais! 
             Planejadas por professores, para professores.
           </p>
           <div className="relative mt-8">
