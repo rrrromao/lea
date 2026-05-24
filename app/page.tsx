@@ -135,9 +135,9 @@ export default function Home() {
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold">Sobre o PlanosEdu</h2>
             <p className="mt-4 text-muted-foreground">
-              O PlanosEdu é um repositório colaborativo de planos de aula para professores 
-              de Arte. Nossa missão é facilitar o acesso a atividades de qualidade para 
-              Artes Visuais, Música, Dança e Teatro, ajudando educadores a enriquecer 
+            Parque de Planos é um repositório colaborativo de planos de aula para professores 
+              de Arte criado pelo Laboratório de Ensino da Arte da Uerj. Nossa missão é facilitar o acesso a atividades de qualidade para 
+              as Artes, ajudando educadores a enriquecer 
               suas aulas e inspirar seus alunos.
             </p>
             <p className="mt-4 text-sm text-muted-foreground">
