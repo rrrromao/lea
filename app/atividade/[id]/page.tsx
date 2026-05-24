@@ -179,9 +179,16 @@ export default function AtividadePage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="leading-relaxed text-muted-foreground">
-                  {atividade.metodologia}
-                </p>
+                <ol className="space-y-4">
+                  {atividade.metodologia.split(". ").filter(Boolean).map((etapa, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+                        {index + 1}
+                      </span>
+                      <span className="leading-relaxed text-muted-foreground">{etapa}</span>
+                    </li>
+                  ))}
+                </ol>
               </CardContent>
             </Card>
 
