@@ -133,7 +133,7 @@ export default function Home() {
       <footer id="sobre" className="border-t border-border bg-muted/30">
         <div className="container mx-auto px-4 py-12">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-bold">Sobre o PlanosEdu</h2>
+            <h2 className="text-2xl font-bold">Sobre o Parque de Planos</h2>
             <p className="mt-4 text-muted-foreground">
             Parque de Planos é um repositório colaborativo de planos de aula para professores 
               de Arte criado pelo Laboratório de Ensino da Arte da Uerj. Nossa missão é facilitar o acesso a atividades de qualidade para 
