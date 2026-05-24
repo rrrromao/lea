@@ -15,7 +15,7 @@ export const planosDeAula: PlanoDeAula[] = [
     materiais: ["Projetor ou televisão para exibição", "Papel sulfite ou cartolina", "Lápis, canetas e materiais de colorir", "Tesoura e cola (para cartazes)"],
     duracao: "2 a 3 aulas de 50 minutos",
     avaliacao: "Participação na exibição e na roda de conversa. Produção expressiva realizada após o filme. Não há resposta certa: o critério é o engajamento e a expressão genuína.",
-    linguagemArtistica: "Artes Visuais",
+    linguagemArtistica: "Audiovisual",
     faixaEtaria: "9-11 anos (4º ao 6º ano)",
     recursos: ["Projetor/Datashow", "Papel e papelão", "Materiais de baixo custo"],
     conteudos: ["Cinema", "Educação audiovisual", "Expressão plástica", "Leitura de imagens"],
