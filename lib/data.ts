@@ -126,14 +126,14 @@ export async function fetchPlanosDeAula(): Promise<PlanoDeAula[]> {
       const titulo = row.titulo?.trim()
       const descricao = row.descricao?.trim()
 
-      if (!id || !titulo || !descricao) return null
+      if (!id || !titulo || !descricao) {
+        return null
+      }
 
       const idNumerico = Number(id)
-      if (!Number.isInteger(idNumerico) || idNumerico <= 0) return null
-
-      if (ehCampoDia(titulo)) return null
-      if (ehCampoDia(descricao)) return null
-      if (ehDescricaoFragmento(descricao)) return null
+      if (!Number.isInteger(idNumerico) || idNumerico <= 0) {
+        return null
+      }
 
       const avaliacaoMedia = Number(row["avaliacao media"])
       const numeroAvaliacoes = Number(row["numero de avaliacoes"])
