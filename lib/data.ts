@@ -99,6 +99,19 @@ function splitList(value: string): string[] {
     .filter((item) => item.length > 0)
 }
 
+function ehCampoDia(value: string): boolean {
+  return /^(Primeira|Segunda|Terceira|Quarta|Quinta|Sexta)\s+aula\s*:/i.test(value.trim())
+}
+
+function ehDescricaoFragmento(value: string): boolean {
+  const trimmed = value.trim()
+  if (!trimmed) return true
+  if (trimmed.length < 10) return true
+  if (/^[a-zà-ú]/.test(trimmed.slice(0, 1))) return true
+  if (/^cada pessoa|^peça para|^Apresente |^Tente |^Vale ser/.test(trimmed)) return true
+  return false
+}
+
 export async function fetchPlanosDeAula(): Promise<PlanoDeAula[]> {
   const response = await fetch(CSV_URL, {
     next: { revalidate: 60 },
@@ -113,9 +126,14 @@ export async function fetchPlanosDeAula(): Promise<PlanoDeAula[]> {
       const titulo = row.titulo?.trim()
       const descricao = row.descricao?.trim()
 
-      if (!id || !titulo || !descricao) {
-        return null
-      }
+      if (!id || !titulo || !descricao) return null
+
+      const idNumerico = Number(id)
+      if (!Number.isInteger(idNumerico) || idNumerico <= 0) return null
+
+      if (ehCampoDia(titulo)) return null
+      if (ehCampoDia(descricao)) return null
+      if (ehDescricaoFragmento(descricao)) return null
 
       const avaliacaoMedia = Number(row["avaliacao media"])
       const numeroAvaliacoes = Number(row["numero de avaliacoes"])
