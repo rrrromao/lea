@@ -147,10 +147,6 @@ export default function AtividadePage() {
               </p>
 
               <div className="mt-6 flex flex-wrap items-center gap-4">
-                <ShareButtons
-                  titulo={atividade.titulo}
-                  url={currentUrl}
-                />
               </div>
             </div>
 
