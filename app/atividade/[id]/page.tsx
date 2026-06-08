@@ -11,7 +11,6 @@ import {
   Clock,
   ExternalLink,
   FolderOpen,
-  ListChecks,
   Package,
   PlayCircle,
   Target,
@@ -19,9 +18,6 @@ import {
   Users,
 } from "lucide-react"
 import { Header } from "@/components/header"
-import { RatingStars } from "@/components/rating-stars"
-import { CommentsSection } from "@/components/comments-section"
-import { ShareButtons } from "@/components/share-buttons"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -32,7 +28,6 @@ import {
 } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { fetchPlanosDeAula } from "@/lib/data"
-import type { Comentario } from "@/lib/types"
 import { parseMetodologia } from "@/lib/metodologia"
 
 const linguagemCores: Record<string, string> = {
@@ -43,15 +38,25 @@ const linguagemCores: Record<string, string> = {
   Audiovisual: "bg-sky-500/10 text-sky-600 dark:text-sky-400",
 }
 
+function slugifyNome(nome: string) {
+  return nome
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-")
+}
+
 export default function AtividadePage() {
   const params = useParams()
   const id = params.id as string
-
-  const [comentarios, setComentarios] = useState<Comentario[]>([])
-  const [userRating, setUserRating] = useState<number>(0)
-  const [atividade, setAtividade] = useState<
-    (ReturnType<typeof fetchPlanosDeAula> extends Promise<infer R> ? R extends { id: string }[] ? R[number] : never : never) | null
-  >(null)
+  const [atividade, setAtividade] = useState<ReturnType<
+    typeof fetchPlanosDeAula
+  > extends Promise<infer R>
+    ? R extends { id: string }[]
+      ? R[number]
+      : never
+    : never | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -69,35 +74,6 @@ export default function AtividadePage() {
       cancelled = true
     }
   }, [id])
-
-  // Carregar comentários do localStorage
-  useEffect(() => {
-    const saved = localStorage.getItem(`comentarios-${id}`)
-    if (saved) {
-      setComentarios(JSON.parse(saved))
-    }
-
-    const savedRating = localStorage.getItem(`rating-${id}`)
-    if (savedRating) {
-      setUserRating(Number(savedRating))
-    }
-  }, [id])
-
-  const handleAddComentario = (novoComentario: Omit<Comentario, "id" | "data">) => {
-    const comentario: Comentario = {
-      ...novoComentario,
-      id: crypto.randomUUID(),
-      data: new Date().toISOString(),
-    }
-    const novosComentarios = [comentario, ...comentarios]
-    setComentarios(novosComentarios)
-    localStorage.setItem(`comentarios-${id}`, JSON.stringify(novosComentarios))
-  }
-
-  const handleRatingChange = (rating: number) => {
-    setUserRating(rating)
-    localStorage.setItem(`rating-${id}`, String(rating))
-  }
 
   const formatarData = (data: string) => {
     return new Date(data).toLocaleDateString("pt-BR", {
@@ -142,7 +118,6 @@ export default function AtividadePage() {
       <Header />
 
       <main className="container mx-auto px-4 py-8">
-        {/* Breadcrumb */}
         <div className="mb-6">
           <Button variant="ghost" size="sm" asChild>
             <Link href="/">
@@ -153,9 +128,7 @@ export default function AtividadePage() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-3">
-          {/* Conteúdo principal */}
           <div className="space-y-6 lg:col-span-2">
-            {/* Header da atividade */}
             <div>
               <div className="flex flex-wrap items-center gap-2">
                 <Badge
@@ -174,22 +147,15 @@ export default function AtividadePage() {
               </p>
 
               <div className="mt-6 flex flex-wrap items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <RatingStars rating={atividade.avaliacaoMedia} size="md" />
-                  <span className="font-semibold">
-                    {atividade.avaliacaoMedia.toFixed(1)}
-                  </span>
-                  <span className="text-sm text-muted-foreground">
-                    ({atividade.numeroAvaliacoes} avaliações)
-                  </span>
-                </div>
-                <ShareButtons titulo={atividade.titulo} url={currentUrl} />
+                <ShareButtons
+                  titulo={atividade.titulo}
+                  url={currentUrl}
+                />
               </div>
             </div>
 
             <Separator />
 
-            {/* Vídeo */}
             {atividade.videoUrl && (
               <Card>
                 <CardHeader>
@@ -212,7 +178,6 @@ export default function AtividadePage() {
               </Card>
             )}
 
-            {/* Objetivos */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -232,7 +197,6 @@ export default function AtividadePage() {
               </CardContent>
             </Card>
 
-            {/* Metodologia */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -263,7 +227,6 @@ export default function AtividadePage() {
               </CardContent>
             </Card>
 
-            {/* Materiais */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -297,7 +260,6 @@ export default function AtividadePage() {
               </CardContent>
             </Card>
 
-            {/* Avaliação */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -311,40 +273,8 @@ export default function AtividadePage() {
                 </p>
               </CardContent>
             </Card>
-
-            <Separator />
-
-            {/* Avaliar atividade */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Avalie esta atividade</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center gap-4">
-                  <RatingStars
-                    rating={userRating}
-                    size="lg"
-                    interactive
-                    onRatingChange={handleRatingChange}
-                  />
-                  {userRating > 0 && (
-                    <span className="text-sm text-muted-foreground">
-                      Você avaliou com {userRating} {userRating === 1 ? "estrela" : "estrelas"}
-                    </span>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Comentários */}
-            <CommentsSection
-              atividadeId={id}
-              comentarios={comentarios}
-              onAddComentario={handleAddComentario}
-            />
           </div>
 
-          {/* Sidebar */}
           <div className="space-y-6">
             <Card>
               <CardHeader>
@@ -357,7 +287,15 @@ export default function AtividadePage() {
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground">Autor</p>
-                    <p className="text-sm font-medium">{atividade.autor}</p>
+                    <Button
+                      variant="link"
+                      className="h-auto p-0 text-sm font-medium"
+                      asChild
+                    >
+                      <Link href={`/autor/${slugifyNome(atividade.autor)}`}>
+                        {atividade.autor}
+                      </Link>
+                    </Button>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
