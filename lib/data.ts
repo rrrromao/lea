@@ -1,173 +1,93 @@
 import type { PlanoDeAula } from "./types"
 
-const CSV_URL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vQLLcamnHOcoS80MdfCio0qFPFyRpvZuL5_X7CHbjI_TjPIm68b4sQuvR8sFKJ4uDB4qPcRPvOnYtSR/pub?output=csv"
-
-type ParserRow = Record<string, string>
-
-function csvUnescape(value: string): string {
-  const trimmed = value.trim()
-  if (!trimmed) return ""
-  if (trimmed.startsWith('"') && trimmed.endsWith('"')) {
-    return trimmed
-      .slice(1, -1)
-      .replace(/""/g, '"')
-  }
-  return trimmed
-}
-
-function parseFields(line: string): string[] {
-  const result: string[] = []
-  let current = ""
-  let inQuotes = false
-  let i = 0
-
-  while (i < line.length) {
-    const char = line[i]
-
-    if (char === '"') {
-      if (inQuotes && i + 1 < line.length && line[i + 1] === '"') {
-        current += '"'
-        i += 1
-      } else {
-        inQuotes = !inQuotes
-      }
-    } else if (char === "," && !inQuotes) {
-      result.push(csvUnescape(current))
-      current = ""
-    } else {
-      current += char
-    }
-
-    i += 1
-  }
-
-  result.push(csvUnescape(current))
-  return result
-}
-
-function parseCsv(text: string): ParserRow[] {
-  const normalized = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n")
-  const lines = normalized.split("\n")
-
-  const rows: ParserRow[] = []
-  let headers: string[] = []
-  let pendingLine = ""
-
-  const flushPending = () => {
-    if (!pendingLine.trim()) return
-    const values = parseFields(pendingLine)
-    if (headers.length === 0) {
-      headers = values.map((h) => h.trim().toLowerCase())
-    } else {
-      const row: ParserRow = {}
-      headers.forEach((header, index) => {
-        row[header] = values[index] ?? ""
-      })
-      rows.push(row)
-    }
-    pendingLine = ""
-  }
-
-  for (const rawLine of lines) {
-    if (!rawLine.trim()) {
-      flushPending()
-      continue
-    }
-
-    const inQuotes = (pendingLine + "\n" + rawLine).split('"').length % 2 !== 0
-
-    if (inQuotes) {
-      pendingLine += `\n${rawLine}`
-      continue
-    }
-
-    pendingLine += rawLine
-    flushPending()
-  }
-
-  flushPending()
-
-  return rows
-}
-
-function splitList(value: string): string[] {
-  if (!value) return []
-  return value
-    .split(";")
-    .map((item) => item.trim())
-    .filter((item) => item.length > 0)
-}
-
-function ehCampoDia(value: string): boolean {
-  return /^(Primeira|Segunda|Terceira|Quarta|Quinta|Sexta)\s+aula\s*:/i.test(value.trim())
-}
-
-function ehDescricaoFragmento(value: string): boolean {
-  const trimmed = value.trim()
-  if (!trimmed) return true
-  if (trimmed.length < 10) return true
-  if (/^[a-zà-ú]/.test(trimmed.slice(0, 1))) return true
-  if (/^cada pessoa|^peça para|^Apresente |^Tente |^Vale ser/.test(trimmed)) return true
-  return false
-}
+const PLANOS_DE_AULA: PlanoDeAula[] = [
+  {
+    id: "1",
+    titulo: "Assistir filme como uma prática criativa",
+    descricao:
+      "Assistir a um filme pode ser uma atividade criativa em si, estimulando a percepção e a expressão dos estudantes.",
+    objetivos: [
+      "Desenvolver a espectatorialidade audiovisual como prática expressiva",
+      "Estimular a criação plástica a partir da experiência de assistir a um filme",
+      "Promover a expressão individual e coletiva após a exibição",
+      "Relacionar o cotidiano dos estudantes com as imagens vistas",
+    ],
+    metodologia:
+      "Primeira aula: Exibições e roda de conversa; Segunda aula: Criação de desenhos individuais; Terceira aula: Construção de histórias em quadrinhos em grupo; Quarta aula: Exibição e produção de cartazes.",
+    materiais: [
+      "Projetor ou televisão para exibição",
+      "Papel sulfite ou cartolina",
+      "Lápis, canetas e materiais de colorir",
+      "Tesoura e cola (para cartazes)",
+    ],
+    duracao: "4 aulas de 100 minutos",
+    avaliacao:
+      "Participação na exibição e na roda de conversa. Produção expressiva realizada após o filme.",
+    linguagemArtistica: "Audiovisual",
+    faixaEtaria: "9-11 anos (3º ao 6º ano)",
+    recursos: [
+      "Quatro curtas-metragens",
+      "Projetor/Datashow",
+      "Papel e papelão",
+      "Materiais de baixo custo",
+    ],
+    conteudos: [
+      "Cinema",
+      "Educação audiovisual",
+      "Cinema-Educação",
+      "Educomunicação",
+      "Recepção de filmes",
+      "Leitura de imagens",
+    ],
+    autor: "Prof. Rafael Romao Silva",
+    dataCriacao: "2026-05-24",
+    avaliacaoMedia: 5.0,
+    numeroAvaliacoes: 1,
+    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    repositorioUrl: "https://drive.google.com/drive/folders/SEU_ID_AQUI",
+  },
+  {
+    id: "2",
+    titulo: "Colheita de Cores",
+    descricao:
+      "Encontrar as cores através de uma câmera fotográfica, desenvolvendo o olhar e a percepção visual.",
+    objetivos: [
+      "Investigar como uma mesma cor pode se mostrar de formas diferentes",
+      "Perceber como o tipo de iluminação afeta as cores",
+      "Descobrir como a câmera utilizada consegue ou não ser fiel ao que se vê a olho nu",
+    ],
+    metodologia:
+      "Primeira aula: Discussão de fotos e escolha de cor; Segunda aula: Passeio atento e registro fotográfico; Terceira aula: Seleção das fotos e reflexão sobre a cor escolhida.",
+    materiais: [
+      "Câmera fotográfica",
+      "Projetor ou computador para exibir as fotos",
+      "Papel para registro e reflexão",
+    ],
+    duracao: "2 aulas de 100 minutos",
+    avaliacao:
+      "Participação na atividade de observação e produção do texto/áudio reflexivo sobre a cor escolhida.",
+    linguagemArtistica: "Audiovisual",
+    faixaEtaria: "9-11 anos (3º ao 6º ano)",
+    recursos: [
+      "Câmeras fotográficas de diferentes tecnologias",
+      "Projetor/Datashow",
+      "Papel e material de escrita",
+    ],
+    conteudos: [
+      "Fotografia",
+      "Educomunicação",
+      "Cores",
+      "Observação do espaço",
+    ],
+    autor: "Prof. Rafael Romao Silva",
+    dataCriacao: "2026-06-08",
+    avaliacaoMedia: 0,
+    numeroAvaliacoes: 0,
+    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    repositorioUrl: "https://drive.google.com/drive/folders/SEU_ID_AQUI",
+  },
+]
 
 export async function fetchPlanosDeAula(): Promise<PlanoDeAula[]> {
-  const response = await fetch(CSV_URL, {
-    next: { revalidate: 60 },
-  })
-
-  const text = await response.text()
-  const rows = parseCsv(text)
-
-  return rows
-    .map((row) => {
-      const id = row.id?.trim()
-      const titulo = row.titulo?.trim()
-      const descricao = row.descricao?.trim()
-
-      if (!id || !titulo || !descricao) {
-        return null
-      }
-
-      const idNumerico = Number(id)
-      if (!Number.isInteger(idNumerico) || idNumerico <= 0) {
-        return null
-      }
-
-      const avaliacaoMedia = Number(row["avaliacao media"])
-      const numeroAvaliacoes = Number(row["numero de avaliacoes"])
-
-      return {
-        id,
-        titulo,
-        descricao,
-        objetivos: splitList(row.objetivos ?? ""),
-        metodologia: row.metodologia ?? "",
-        materiais: splitList(row.materiais ?? ""),
-        duracao: row.duracao?.trim() ?? "",
-        avaliacao: row.avaliacao?.trim() ?? "",
-        linguagemArtistica: row["linguagem artistica"]?.trim() ?? "",
-        faixaEtaria: row["faixa etaria"]?.trim() ?? "",
-        recursos: splitList(row.recursos ?? ""),
-        conteudos: splitList(row.conteudos ?? ""),
-        autor: row.autor?.trim() ?? "",
-        dataCriacao: row["data de criacao"]?.trim() ?? "",
-        avaliacaoMedia: Number.isFinite(avaliacaoMedia) ? avaliacaoMedia : 0,
-        numeroAvaliacoes: Number.isFinite(numeroAvaliacoes)
-          ? numeroAvaliacoes
-          : 0,
-        videoUrl: row["video url"]?.trim() || undefined,
-        repositorioUrl: row["repositorio url"]?.trim() || undefined,
-      } satisfies PlanoDeAula
-    })
-    .filter((item): item is PlanoDeAula => item !== null)
+  return PLANOS_DE_AULA
 }
-
-export const LINGUAGENS_ARTISTICAS_PADRAO = [
-  "Artes Visuais",
-  "Música",
-  "Dança",
-  "Teatro",
-  "Audiovisual",
-] as const
