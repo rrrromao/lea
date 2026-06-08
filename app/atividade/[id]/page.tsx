@@ -21,10 +21,16 @@ import { CommentsSection } from "@/components/comments-section"
 import { ShareButtons } from "@/components/share-buttons"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { planosDeAula } from "@/lib/data"
 import type { Comentario } from "@/lib/types"
+import { parseMetodologia } from "@/lib/metodologia"
 
 const linguagemCores: Record<string, string> = {
   "Artes Visuais": "bg-rose-500/10 text-rose-600 dark:text-rose-400",
@@ -179,16 +185,25 @@ export default function AtividadePage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <ol className="space-y-4">
-                  {atividade.metodologia.split(". ").filter(Boolean).map((etapa, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
-                        {index + 1}
-                      </span>
-                      <span className="leading-relaxed text-muted-foreground">{etapa}</span>
-                    </li>
+                <div className="space-y-6">
+                  {parseMetodologia(atividade.metodologia).map((dia, diaIndex) => (
+                    <div key={diaIndex} className="space-y-3">
+                      <h3 className="text-sm font-semibold uppercase tracking-wide text-primary">
+                        {dia.titulo}
+                      </h3>
+                      <ol className="space-y-3">
+                        {dia.etapas.map((etapa, etapaIndex) => (
+                          <li key={etapaIndex} className="flex items-start gap-3">
+                            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-primary/30 text-xs font-semibold text-primary">
+                              {etapaIndex + 1}
+                            </span>
+                            <span className="leading-relaxed text-muted-foreground">{etapa}</span>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
                   ))}
-                </ol>
+                </div>
               </CardContent>
             </Card>
 
