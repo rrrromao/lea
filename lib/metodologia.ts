@@ -3,36 +3,56 @@ export interface DiaMetodologia {
   etapas: string[]
 }
 
+const PADROES_DIA = [
+  { titulo: "Primeira aula", regex: /^Primeira aula:\s*/i },
+  { titulo: "Segunda aula", regex: /^Segunda aula:\s*/i },
+  { titulo: "Terceira aula", regex: /^Terceira aula:\s*/i },
+  { titulo: "Quarta aula", regex: /^Quarta aula:\s*/i },
+  { titulo: "Quinta aula", regex: /^Quinta aula:\s*/i },
+  { titulo: "Sexta aula", regex: /^Sexta aula:\s*/i },
+]
+
 export function parseMetodologia(texto: string): DiaMetodologia[] {
-  const regex =
-    /(Primeira|Segunda|Terceira|Quarta|Quinta|Sexta|Sétima|Oitava|Nona|Décima) aula:/gi
+  if (!texto.trim()) return []
 
-  const partes = texto.split(regex)
-
+  // Divide o texto inteiro em linhas, mas mantendo quebras
+  const linhas = texto.split(/\r?\n/)
   const dias: DiaMetodologia[] = []
+  let diaAtual: { titulo: string; etapas: string[] } | null = null
 
-  // Exemplo após split:
-  // ["", "Primeira", " texto da primeira aula...", "Segunda", " texto da segunda aula..."]
-  for (let i = 1; i < partes.length; i += 2) {
-    const titulo = `${partes[i] ?? ""} aula`
-    const bloco = (partes[i + 1] ?? "").trim()
+  for (const linha of linhas) {
+    const linhaLimpa = linha.trim()
+    if (!linhaLimpa) continue
 
-    const etapas = bloco
-      .split(".")
-      .map((etapa) => etapa.trim())
-      .filter((etapa) => etapa.length > 0)
+    // Verifica se a linha começa com algum padrão de dia
+    let encontrouDia = false
+    for (const padrao of PADROES_DIA) {
+      if (padrao.regex.test(linhaLimpa)) {
+        if (diaAtual) {
+          dias.push(diaAtual)
+        }
+        diaAtual = { titulo: padrao.titulo, etapas: [] }
+        // Remove o header "Primeira aula: " do texto
+        const textoEtapas = linhaLimpa.replace(padrao.regex, "").trim()
+        if (textoEtapas) {
+          diaAtual.etapas.push(textoEtapas)
+        }
+        encontrouDia = true
+        break
+      }
+    }
 
-    dias.push({ titulo, etapas })
+    if (!encontrouDia) {
+      if (!diaAtual) {
+        // Se não tem dia nenhum ainda, cria um bloco genérico
+        diaAtual = { titulo: "Metodologia", etapas: [] }
+      }
+      diaAtual.etapas.push(linhaLimpa)
+    }
   }
 
-  // Fallback: se não encontrou nenhum dia, trata como um bloco só
-  if (dias.length === 0 && texto.trim().length > 0) {
-    const etapas = texto
-      .split(".")
-      .map((etapa) => etapa.trim())
-      .filter((etapa) => etapa.length > 0)
-
-    dias.push({ titulo: "Metodologia", etapas })
+  if (diaAtual) {
+    dias.push(diaAtual)
   }
 
   return dias

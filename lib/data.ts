@@ -6,72 +6,87 @@ const CSV_URL =
 type ParserRow = Record<string, string>
 
 function csvUnescape(value: string): string {
-  if (!value) return ""
-  if (value.startsWith('"') && value.endsWith('"')) {
-    return value
+  const trimmed = value.trim()
+  if (!trimmed) return ""
+  if (trimmed.startsWith('"') && trimmed.endsWith('"')) {
+    return trimmed
       .slice(1, -1)
       .replace(/""/g, '"')
   }
-  return value
+  return trimmed
 }
 
-function parseLine(line: string): string[] {
+function parseFields(line: string): string[] {
   const result: string[] = []
   let current = ""
   let inQuotes = false
+  let i = 0
 
-  for (let i = 0; i < line.length; i++) {
+  while (i < line.length) {
     const char = line[i]
 
     if (char === '"') {
-      if (inQuotes && line[i + 1] === '"') {
+      if (inQuotes && i + 1 < line.length && line[i + 1] === '"') {
         current += '"'
         i += 1
       } else {
         inQuotes = !inQuotes
       }
     } else if (char === "," && !inQuotes) {
-      result.push(csvUnescape(current.trim()))
+      result.push(csvUnescape(current))
       current = ""
     } else {
       current += char
     }
+
+    i += 1
   }
 
-  result.push(csvUnescape(current.trim()))
+  result.push(csvUnescape(current))
   return result
 }
 
 function parseCsv(text: string): ParserRow[] {
-  const lines = text
-    .replace(/\r\n/g, "\n")
-    .replace(/\r/g, "\n")
-    .split("\n")
+  const normalized = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n")
+  const lines = normalized.split("\n")
 
   const rows: ParserRow[] = []
   let headers: string[] = []
+  let pendingLine = ""
 
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i]
-
-    if (!line.trim()) {
-      continue
-    }
-
-    const values = parseLine(line)
-
+  const flushPending = () => {
+    if (!pendingLine.trim()) return
+    const values = parseFields(pendingLine)
     if (headers.length === 0) {
       headers = values.map((h) => h.trim().toLowerCase())
+    } else {
+      const row: ParserRow = {}
+      headers.forEach((header, index) => {
+        row[header] = values[index] ?? ""
+      })
+      rows.push(row)
+    }
+    pendingLine = ""
+  }
+
+  for (const rawLine of lines) {
+    if (!rawLine.trim()) {
+      flushPending()
       continue
     }
 
-    const row: ParserRow = {}
-    headers.forEach((header, index) => {
-      row[header] = values[index] ?? ""
-    })
+    const inQuotes = (pendingLine + "\n" + rawLine).split('"').length % 2 !== 0
 
-    rows.push(row)
+    if (inQuotes) {
+      pendingLine += `\n${rawLine}`
+      continue
+    }
+
+    pendingLine += rawLine
+    flushPending()
   }
+
+  flushPending()
 
   return rows
 }
