@@ -12,10 +12,10 @@ import {
 } from "@/components/ui/accordion"
 import {
   FAIXAS_ETARIAS,
+  LINGUAGENS_ARTISTICAS,
   RECURSOS_DISPONIVEIS,
   type Filtros,
 } from "@/lib/types"
-import { LINGUAGENS_ARTISTICAS_PADRAO } from "@/lib/data"
 
 interface SearchFiltersProps {
   filtros: Filtros
@@ -78,7 +78,7 @@ export function SearchFilters({ filtros, onFiltrosChange }: SearchFiltersProps) 
           </AccordionTrigger>
           <AccordionContent>
             <div className="space-y-3 pt-1">
-              {LINGUAGENS_ARTISTICAS_PADRAO.map((linguagem) => (
+              {LINGUAGENS_ARTISTICAS.map((linguagem) => (
                 <div key={linguagem} className="flex items-center space-x-2">
                   <Checkbox
                     id={`linguagem-${linguagem}`}
