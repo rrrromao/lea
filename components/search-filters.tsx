@@ -69,7 +69,7 @@ export function SearchFilters({ filtros, onFiltrosChange }: SearchFiltersProps) 
 
       <Accordion
         type="multiple"
-        defaultValue={["linguagens", "faixas", "recursos", "conteudos"]}
+        defaultValue={["linguagens", "faixas", "recursos"]}
         className="w-full"
       >
         <AccordionItem value="linguagens">
@@ -140,31 +140,6 @@ export function SearchFilters({ filtros, onFiltrosChange }: SearchFiltersProps) 
                     className="text-sm font-normal cursor-pointer"
                   >
                     {recurso}
-                  </Label>
-                </div>
-              ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-
-        <AccordionItem value="conteudos">
-          <AccordionTrigger className="text-sm font-medium">
-            Conteúdos
-          </AccordionTrigger>
-          <AccordionContent>
-            <div className="space-y-3 pt-1 max-h-64 overflow-y-auto">
-              {CONTEUDOS_DISPONIVEIS.map((conteudo) => (
-                <div key={conteudo} className="flex items-center space-x-2">
-                  <Checkbox
-                    id={`conteudo-${conteudo}`}
-                    checked={filtros.conteudos.includes(conteudo)}
-                    onCheckedChange={() => toggleFiltro("conteudos", conteudo)}
-                  />
-                  <Label
-                    htmlFor={`conteudo-${conteudo}`}
-                    className="text-sm font-normal cursor-pointer"
-                  >
-                    {conteudo}
                   </Label>
                 </div>
               ))}
