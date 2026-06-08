@@ -9,8 +9,11 @@ import {
   Calendar,
   CheckCircle,
   Clock,
+  ExternalLink,
+  FolderOpen,
   ListChecks,
   Package,
+  PlayCircle,
   Target,
   User,
   Users,
@@ -156,6 +159,29 @@ export default function AtividadePage() {
 
             <Separator />
 
+            {/* Vídeo */}
+            {atividade.videoUrl && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <PlayCircle className="h-5 w-5 text-primary" />
+                    Vídeo da atividade
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="aspect-video overflow-hidden rounded-md border border-border">
+                    <iframe
+                      className="h-full w-full"
+                      src={atividade.videoUrl.replace("watch?v=", "embed/")}
+                      title={`Vídeo de ${atividade.titulo}`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
             {/* Objetivos */}
             <Card>
               <CardHeader>
@@ -215,7 +241,7 @@ export default function AtividadePage() {
                   Materiais Necessários
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-3">
                 <ul className="grid gap-2 sm:grid-cols-2">
                   {atividade.materiais.map((material, index) => (
                     <li key={index} className="flex items-center gap-2">
@@ -224,6 +250,20 @@ export default function AtividadePage() {
                     </li>
                   ))}
                 </ul>
+                {atividade.repositorioUrl && (
+                  <Button asChild variant="outline" size="sm">
+                    <a
+                      href={atividade.repositorioUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2"
+                    >
+                      <FolderOpen className="h-4 w-4" />
+                      Abrir repositório da atividade
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </Button>
+                )}
               </CardContent>
             </Card>
 

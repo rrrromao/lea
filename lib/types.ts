@@ -15,6 +15,8 @@ export interface PlanoDeAula {
   dataCriacao: string
   avaliacaoMedia: number
   numeroAvaliacoes: number
+  videoUrl?: string
+  repositorioUrl?: string
 }
 
 export interface Comentario {

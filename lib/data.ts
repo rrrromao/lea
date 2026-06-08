@@ -22,7 +22,9 @@ export const planosDeAula: PlanoDeAula[] = [
     autor: "Prof. Rafael Romão Silva",
     dataCriacao: "2026-05-24",
     avaliacaoMedia: 5.0,
-    numeroAvaliacoes: 1
+    numeroAvaliacoes: 1,
+    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    repositorioUrl: "https://drive.google.com/drive/folders/SEU_ID_AQUI"
   }
 ]
 
