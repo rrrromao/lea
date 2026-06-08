@@ -5,18 +5,6 @@ const CSV_URL =
 
 type ParserRow = Record<string, string>
 
-function escapeCsvValue(value: string): string {
-  if (value.includes('"') || value.includes(",") || value.includes("\n")) {
-    return `"${value.replace(/"/g, '""')}"`
-  }
-  return value
-}
-
-function quote(value: string): string {
-  if (!value) return '""'
-  return `"${value.replace(/"/g, '""')}"`
-}
-
 function csvUnescape(value: string): string {
   if (!value) return ""
   if (value.startsWith('"') && value.endsWith('"')) {
@@ -142,3 +130,11 @@ export async function fetchPlanosDeAula(): Promise<PlanoDeAula[]> {
     })
     .filter((item): item is PlanoDeAula => item !== null)
 }
+
+export const LINGUAGENS_ARTISTICAS_PADRAO = [
+  "Artes Visuais",
+  "Música",
+  "Dança",
+  "Teatro",
+  "Audiovisual",
+] as const
