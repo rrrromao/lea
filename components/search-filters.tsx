@@ -15,7 +15,7 @@ import {
   RECURSOS_DISPONIVEIS,
   type Filtros,
 } from "@/lib/types"
-import { CONTEUDOS_DISPONIVEIS, LINGUAGENS_ARTISTICAS_PADRAO } from "@/lib/data"
+import { LINGUAGENS_ARTISTICAS_PADRAO } from "@/lib/data"
 
 interface SearchFiltersProps {
   filtros: Filtros
