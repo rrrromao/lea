@@ -1,34 +1,81 @@
 import type { PlanoDeAula } from "./types"
 
-export const planosDeAula: PlanoDeAula[] = [
-  {
-    id: "1",
-    titulo: "Assistir filme como uma prática criativa",
-    descricao: "Atividade de educação audiovisual centrada na exibição de um filme seguida de práticas expressivas que desenvolvem a espectatorialidade como construção plástica e criativa, fugindo da mera interpretação ou letramento.",
-    objetivos: [
-      "Desenvolver a espectatorialidade audiovisual como prática expressiva",
-      "Estimular a criação plástica a partir da experiência de assistir a um filme",
-      "Promover a expressão individual e coletiva após a exibição",
-      "Relacionar o cotidiano dos estudantes com as imagens vistas"
-    ],
-    metodologia: "Primeira aula: Exibição do Filme 1. O professor apresenta brevemente o filme sem revelar detalhes da narrativa, criando expectativa. Os estudantes assistem ao filme com atenção livre, sem roteiro ou ficha de observação prévia. A professora pode fazer provocações enquanto o filme é exibido, como a figura história do 'explicador'. Após a exibição do filme, é pedido para que cada estudante desenhe uma imagem a partir do filme, a que mais lhe marcou. É possível pedir para que eles apresentem a imagem e falem sobre ela para a turma toda. Segunda aula: exibição do Filme 2.  Cada estudante recebe papel e materiais e é convidado a criar um desenho em quadrinhos que conte a história do filme, sensação ou imagem que ficou na memória após a exibição. Não há certo ou errado: o ponto de partida é a experiência de cada um. Terceira aula: exibição do Filme 3. Com a turma dividida em grupos, cada pessoa do grupo deve desenhar um momento diferente do filme. Após cada um do grupo fazer o seu desenho, peça para ordenarem os desenhos a partir do que viram no filme. Apresente a ideia de linha do tempo e peça para que eles coloquem as imagens na linha. Quarta aula: Exiba o quarto filme. Peça para fazerem a linha do tempo do filme. Apresente alguns cartazes de filmes e converse com a turma sobre para quê eles servem. Peça para cada grupo escolher um momento do filme e fazer um cartaz para ele.",
-    materiais: ["Projetor ou televisão para exibição", "Papel sulfite ou cartolina", "Lápis, canetas e materiais de colorir", "Tesoura e cola (para cartazes)"],
-    duracao: "4 aulas de 100 minutos",
-    avaliacao: "Participação na exibição e na roda de conversa. Produção expressiva realizada após o filme. Não há resposta certa: o critério é o engajamento e a expressão genuína.",
-    linguagemArtistica: "Audiovisual",
-    faixaEtaria: "9-11 anos (3º ao 6º ano)",
-    recursos: ["Quatro curtas-metragens", "Projetor/Datashow", "Papel e papelão", "Materiais de baixo custo"],
-    conteudos: ["Cinema", "Educação audiovisual", "Cinema-Educação", "Educomunicação", "Recepção de filmes", "Leitura de imagens"],
-    autor: "Prof. Rafael Romão Silva",
-    dataCriacao: "2026-05-24",
-    avaliacaoMedia: 5.0,
-    numeroAvaliacoes: 1,
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    repositorioUrl: "https://drive.google.com/drive/folders/SEU_ID_AQUI"
-  }
-]
+const CSV_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vQLLcamnHOcoS80MdfCio0qFPFyRpvZuL5_X7CHbjI_TjPIm68b4sQuvR8sFKJ4uDB4qPcRPvOnYtSR/pub?output=csv"
 
-// Extrair todos os conteúdos únicos dos planos
-export const CONTEUDOS_DISPONIVEIS = Array.from(
-  new Set(planosDeAula.flatMap(p => p.conteudos))
-).sort()
+function parseCsv(text: string): Record<string, string>[] {
+  const lines = text
+    .replace(/\r\n/g, "\n")
+    .replace(/\r/g, "\n")
+    .split("\n")
+    .filter((line) => line.trim().length > 0)
+
+  if (lines.length < 2) return []
+
+  const headers = lines[0].split(",").map((h) => h.trim())
+  const rows: Record<string, string>[] = []
+
+  for (let i = 1; i < lines.length; i++) {
+    const values = lines[i].split(",")
+    const row: Record<string, string> = {}
+
+    headers.forEach((header, index) => {
+      const value = (values[index] ?? "").trim()
+      row[header] = value
+    })
+
+    rows.push(row)
+  }
+
+  return rows
+}
+
+function splitList(value: string): string[] {
+  if (!value) return []
+  return value
+    .split(";")
+    .map((item) => item.trim())
+    .filter((item) => item.length > 0)
+}
+
+export async function fetchPlanosDeAula(): Promise<PlanoDeAula[]> {
+  const response = await fetch(CSV_URL, { next: { revalidate: 60 } })
+  const text = await response.text()
+  const rows = parseCsv(text)
+
+  return rows
+    .map((row) => {
+      const id = row.id?.trim()
+      const titulo = row.titulo?.trim()
+      const descricao = row.descricao?.trim()
+
+      if (!id || !titulo || !descricao) return null
+
+      const avaliacaoMedia = Number(row["avaliacao media"])
+      const numeroAvaliacoes = Number(row["numero de avaliacoes"])
+
+      return {
+        id,
+        titulo,
+        descricao,
+        objetivos: splitList(row.objetivos ?? ""),
+        metodologia: row.metodologia ?? "",
+        materiais: splitList(row.materiais ?? ""),
+        duracao: row.duracao?.trim() ?? "",
+        avaliacao: row.avaliacao?.trim() ?? "",
+        linguagemArtistica: row["linguagem artistica"]?.trim() ?? "",
+        faixaEtaria: row["faixa etaria"]?.trim() ?? "",
+        recursos: splitList(row.recursos ?? ""),
+        conteudos: splitList(row.conteudos ?? ""),
+        autor: row.autor?.trim() ?? "",
+        dataCriacao: row["data de criacao"]?.trim() ?? "",
+        avaliacaoMedia: Number.isFinite(avaliacaoMedia) ? avaliacaoMedia : 0,
+        numeroAvaliacoes: Number.isFinite(numeroAvaliacoes)
+          ? numeroAvaliacoes
+          : 0,
+        videoUrl: row["video url"]?.trim() || undefined,
+        repositorioUrl: row["repositorio url"]?.trim() || undefined,
+      } satisfies PlanoDeAula
+    })
+    .filter((item): item is PlanoDeAula => item !== null)
+}

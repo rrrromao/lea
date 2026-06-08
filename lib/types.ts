@@ -40,6 +40,7 @@ export const LINGUAGENS_ARTISTICAS = [
   "Música",
   "Dança",
   "Teatro",
+  "Audiovisual",
 ] as const
 
 export const FAIXAS_ETARIAS = [

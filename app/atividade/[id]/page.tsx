@@ -31,7 +31,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { planosDeAula } from "@/lib/data"
+import { fetchPlanosDeAula } from "@/lib/data"
 import type { Comentario } from "@/lib/types"
 import { parseMetodologia } from "@/lib/metodologia"
 
@@ -40,6 +40,7 @@ const linguagemCores: Record<string, string> = {
   "Música": "bg-violet-500/10 text-violet-600 dark:text-violet-400",
   "Dança": "bg-amber-500/10 text-amber-600 dark:text-amber-400",
   "Teatro": "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+  Audiovisual: "bg-sky-500/10 text-sky-600 dark:text-sky-400",
 }
 
 export default function AtividadePage() {
@@ -48,8 +49,26 @@ export default function AtividadePage() {
 
   const [comentarios, setComentarios] = useState<Comentario[]>([])
   const [userRating, setUserRating] = useState<number>(0)
+  const [atividade, setAtividade] = useState<
+    (ReturnType<typeof fetchPlanosDeAula> extends Promise<infer R> ? R extends { id: string }[] ? R[number] : never : never) | null
+  >(null)
+  const [loading, setLoading] = useState(true)
 
-  const atividade = planosDeAula.find((a) => a.id === id)
+  useEffect(() => {
+    let cancelled = false
+
+    fetchPlanosDeAula().then((planos) => {
+      if (!cancelled) {
+        const found = planos.find((a) => a.id === id) ?? null
+        setAtividade(found)
+        setLoading(false)
+      }
+    })
+
+    return () => {
+      cancelled = true
+    }
+  }, [id])
 
   // Carregar comentários do localStorage
   useEffect(() => {
@@ -80,6 +99,27 @@ export default function AtividadePage() {
     localStorage.setItem(`rating-${id}`, String(rating))
   }
 
+  const formatarData = (data: string) => {
+    return new Date(data).toLocaleDateString("pt-BR", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    })
+  }
+
+  const currentUrl = typeof window !== "undefined" ? window.location.href : ""
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="container mx-auto px-4 py-16 text-center">
+          <p className="text-muted-foreground">Carregando atividade...</p>
+        </main>
+      </div>
+    )
+  }
+
   if (!atividade) {
     return (
       <div className="min-h-screen bg-background">
@@ -96,16 +136,6 @@ export default function AtividadePage() {
       </div>
     )
   }
-
-  const formatarData = (data: string) => {
-    return new Date(data).toLocaleDateString("pt-BR", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    })
-  }
-
-  const currentUrl = typeof window !== "undefined" ? window.location.href : ""
 
   return (
     <div className="min-h-screen bg-background">
