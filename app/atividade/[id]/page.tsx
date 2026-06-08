@@ -11,6 +11,7 @@ import {
   Clock,
   ExternalLink,
   FolderOpen,
+  ListChecks,
   Package,
   PlayCircle,
   Target,
@@ -82,8 +83,6 @@ export default function AtividadePage() {
       year: "numeric",
     })
   }
-
-  const currentUrl = typeof window !== "undefined" ? window.location.href : ""
 
   if (loading) {
     return (
