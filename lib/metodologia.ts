@@ -10,6 +10,12 @@ const PADROES_DIA = [
   { titulo: "Quarta aula", regex: /^Quarta aula:\s*/i },
   { titulo: "Quinta aula", regex: /^Quinta aula:\s*/i },
   { titulo: "Sexta aula", regex: /^Sexta aula:\s*/i },
+  { titulo: "Primeira etapa", regex: /^Primeira etapa\b\s*[:：]?\s*/i },
+  { titulo: "Segunda etapa", regex: /^Segunda etapa\b\s*[:：]?\s*/i },
+  { titulo: "Terceira etapa", regex: /^Terceira etapa\b\s*[:：]?\s*/i },
+  { titulo: "Quarta etapa", regex: /^Quarta etapa\b\s*[:：]?\s*/i },
+  { titulo: "Quinta etapa", regex: /^Quinta etapa\b\s*[:：]?\s*/i },
+  { titulo: "Sexta etapa", regex: /^Sexta etapa\b\s*[:：]?\s*/i },
 ]
 
 export function parseMetodologia(texto: string): DiaMetodologia[] {

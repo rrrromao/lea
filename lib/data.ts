@@ -107,6 +107,121 @@ const PLANOS_DE_AULA: PlanoDeAula[] = [
     videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     repositorioUrl: "https://drive.google.com/drive/folders/SEU_ID_AQUI",
   },
+  {
+    id: "3",
+    titulo: "Assemblage nas artes visuais e a questão feio/beleza",
+    descricao:
+      "Explorar a dicotomia do belo e do feio na Cultura Visual e nas relações interpessoais por meio da criação tridimensional em Assemblage.",
+    objetivos: [
+      "Relativizar os conceitos de Beleza e Fealdade como construções socioculturais.",
+      "Conhecer a técnica da Assemblage e obras de artistas como Jean Dubuffet, Basquiat, Leonardo Da Vinci, Kirkland Smith e Nuno Ramos.",
+      "Estimular a espontaneidade dos processos poéticos e a experimentação de diferentes matérias em uma mesma produção tridimensional.",
+      "Promover a cooperação, o trabalho em equipe e o respeito às diferenças estéticas e subjetivas.",
+      "Ampliar o vocabulário no campo das Artes Visuais.",
+    ],
+    metodologia:
+      `Primeira etapa: Sensibilização e Fundamentação
+      Nota pedagógica: A assemblage (termo cunhado por Jean Dubuffet em 1953) baseia-se na "estética da acumulação" de objetos do cotidiano para quebrar as fronteiras entre arte e vida. Diferente da colagem bidimensional, constrói uma obra tridimensional em que cada elemento retém seu sentido original enquanto compõe um novo conjunto.
+      Exposição oral e visual: Apresente à turma imagens de obras de arte que utilizam materiais diversos e abordem aspectos do belo e do feio (Basquiat, Nuno Ramos, Kirkland Smith).
+      Mediação e debate: Provoque discussões sobre o que torna algo "belo" ou "feio", relacionando com o cotidiano dos estudantes e com imposições de padrões estéticos que geram exclusão.
+      Apresentação da técnica: Explique o conceito de Assemblage, diferenciando-o da colagem tradicional, ressaltando o uso do objeto tridimensional e a noção de projeto anterior à criação.
+
+      Segunda etapa: Produção Prática Coletiva
+      Organização em grupos: Divida a turma em grupos de 4 a 5 estudantes.
+      Desafio poético: Solicite que planejem e criem uma obra tridimensional (assemblage) coletiva sob o tema central "O Feio".
+      Execução: Orientar os alunos no manuseio, articulação e justaposição dos materiais recicláveis e tridimensionais (papéis diversos, objetos, cola, fitas).
+
+      Terceira etapa: Partilha e Análise Crítica
+      Apresentação das obras: Cada grupo expõe sua assemblage para a turma.
+      Roda de conversa: Debata sobre as dificuldades encontradas (como o hábito/cobrança de produzir apenas coisas "belas"), as emoções extravasadas e a diversidade das produções, fortalecendo a aceitação das diferenças estéticas.`,
+    materiais: [
+      "Projetor (para apresentação das obras de referência)",
+      "Suportes firmes (Papel 40kg, papelão ou cartolina)",
+      "Materiais recicláveis e objetos variados (sucatas, embalagens, retalhos, etc.)",
+      "Papéis diversos (coloridos, jornais, revistas)",
+      "Material de fixação e acabamento (Cola plástica, cola colorida, fita crepe, fita adesiva transparente)",
+      "Tesouras",
+    ],
+    duracao: "3 aulas",
+    avaliacao:
+      "Participação nas discussões, na construção colaborativa da assemblage e na roda de conversa sobre as diferenças estéticas e subjetivas.",
+    linguagemArtistica: "Artes Visuais",
+    faixaEtaria: "12-14 anos (7º ao 9º ano)",
+    recursos: [
+      "Projetor/Datashow",
+      "Materiais recicláveis",
+      "Papel e papelão",
+      "Materiais de baixo custo",
+    ],
+    conteudos: [
+      "Assemblage",
+      "Artes Visuais",
+      "Estética",
+      "Beleza e Fealdade",
+      "Cultura Visual",
+      "Jean Dubuffet",
+      "Basquiat",
+      "Nuno Ramos",
+    ],
+    autor: "Maria Fontellas Sugahara e Rodrigo Torres do Nascimento",
+    edicao: "Rafael Romão",
+    dataCriacao: "2026-08-13",
+    avaliacaoMedia: 0,
+    numeroAvaliacoes: 0,
+  },
+  {
+    id: "4",
+    titulo: "Desenhar Partituras do Corpo em Movimento",
+    descricao:
+      "Buscar formas de desenhar o movimento corporal na experimentação com o espaço.",
+    objetivos: [
+      "Desenvolver a sensibilidade-percepção do movimento corporal a partir da repetição de movimentos, sua invenção e posterior criação de representações gráficas dos movimentos mais marcantes.",
+      "Investigar o espaço físico da escola de forma sensível e criativa através da experimentação de movimentos corporais.",
+      "Estimular a memória corporal e a cooperação em uma construção coletiva de sequências de movimentos/ações, valorizando a percepção individual e coletiva na criação artística.",
+      "Estimular a tradução de experiências corporais em linguagem visual através de símbolos gráficos, como uma espécie de coreologia.",
+    ],
+    metodologia:
+      `Primeira etapa: Aquecimento investigativo
+      Escolha um lugar da escola ou da comunidade, fora da sala de aula.
+      DAR UMA SEQUÊNCIA COM EXEMPLOS
+
+      Segunda etapa: Construção do percurso coletivo
+      Em fila, cada aluno propõe um movimento corporal em interação com o espaço físico. A sequência é construída de forma cumulativa: cada novo aluno repete os movimentos anteriores e acrescenta o seu. Após a construção completa, o percurso é repetido por todo o grupo para reforço da memória corporal e espacial.
+
+      Terceira etapa: Representação gráfica dos movimentos
+      Retorno à sala de aula. Conversa sobre as sensações corporais e percepções do espaço despertados durante a construção do percurso coletivo, provocada por perguntas disparadoras: Como seu corpo reagiu ao espaço nesse exercício? Teve algum lugar que despertou uma sensação diferente? Teve algum movimento do percurso que mais te marcou? Se você tivesse que desenhar esse percurso que acabou de fazer, como seria?
+      Proposta: Em seus cadernos de artes individuais/papel sulfite, cada aluno desenha símbolos que representem/traduzam os movimentos vividos no percurso coletivo, como uma partitura. Serão mostrados exemplos de representações gráficas do movimento (impressas ou digitais) de Trisha Brown, Anna Halprin e Rudolf Laban.
+
+      Quarta etapa: Roda de partilha
+      Compartilhamento da partitura e conversa breve sobre as escolhas gráficas dos símbolos que desenharam, com percepção das individualidades, a partir da pergunta: Como vocês percebem aqueles movimentos do nosso exercício de investigação do espaço nesses símbolos que desenharam agora?`,
+    materiais: [
+      "Espaço escolar a ser definido (quadra, corredores, pátios, mobiliários fixos)",
+      "Caderno de arte individual ou Papel sulfite A4",
+      "Lápis grafite, lápis de cor e/ou canetas coloridas",
+    ],
+    duracao: "1 aula de 100 minutos",
+    avaliacao:
+      "Participação nas atividades, na construção do percurso coletivo e na criação e partilha da partitura gráfica dos movimentos.",
+    linguagemArtistica: "Dança",
+    faixaEtaria: "A partir de 11 anos (6° ano em diante)",
+    recursos: ["Papel e papelão"],
+    conteudos: [
+      "Dança",
+      "Artes Visuais",
+      "Coreologia",
+      "Movimento corporal",
+      "Trisha Brown",
+      "Anna Halprin",
+      "Rudolf Laban",
+    ],
+    autor: "Barbara Ricciotti",
+    edicao: "Rafael Romão",
+    autorBio:
+      "Barbara Ricciotti é artista visual, bailarina e professora. Nascida em Cuiabá, sob o sol do dia de Yemanjá, se mudou para o Rio de Janeiro em busca de se aprimorar como artista. Bacharela em Artes Visuais pela Universidade do Estado do Rio de Janeiro e atualmente concluinte de licenciatura em Artes Visuais pela mesma instituição, também possui formação profissional em dança pela Escola Estadual de Dança Maria Olenewa, do Theatro Municipal do Rio de Janeiro, e formação técnica em Eventos pelo Instituto Federal de Mato Grosso. Sua experiência profissional reúne atuação artística, pedagógica e de produção cultural.",
+    dataCriacao: "2026-08-13",
+    avaliacaoMedia: 0,
+    numeroAvaliacoes: 0,
+  },
 ]
 
 export async function fetchPlanosDeAula(): Promise<PlanoDeAula[]> {

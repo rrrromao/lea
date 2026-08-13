@@ -10,6 +10,7 @@ import {
   CheckCircle,
   Clock,
   ExternalLink,
+  Edit,
   FolderOpen,
   ListChecks,
   Package,
@@ -305,6 +306,17 @@ export default function AtividadePage() {
                     </Button>
                   </div>
                 </div>
+                {atividade.edicao && (
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted">
+                      <Edit className="h-4 w-4 text-muted-foreground" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground">Edição</p>
+                      <p className="text-sm font-medium">{atividade.edicao}</p>
+                    </div>
+                  </div>
+                )}
                 <div className="flex items-center gap-3">
                   <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted">
                     <Calendar className="h-4 w-4 text-muted-foreground" />
@@ -335,11 +347,24 @@ export default function AtividadePage() {
                   </div>
                 </div>
               </CardContent>
-            </Card>
+              </Card>
 
-            <Card>
+              {atividade.autorBio && (
+              <Card>
               <CardHeader>
-                <CardTitle className="text-base">Conteúdos Trabalhados</CardTitle>
+                <CardTitle className="text-base">Sobre {atividade.autor}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {atividade.autorBio}
+                </p>
+              </CardContent>
+              </Card>
+              )}
+
+              <Card>
+              <CardHeader>
+              <CardTitle className="text-base">Conteúdos Trabalhados</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
