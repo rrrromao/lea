@@ -207,14 +207,26 @@ export default function AtividadePage() {
                         {dia.titulo}
                       </h3>
                       <ol className="space-y-3">
-                        {dia.etapas.map((etapa, etapaIndex) => (
-                          <li key={etapaIndex} className="flex items-start gap-3">
-                            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-primary/30 text-xs font-semibold text-primary">
-                              {etapaIndex + 1}
-                            </span>
-                            <span className="leading-relaxed text-muted-foreground">{etapa}</span>
-                          </li>
-                        ))}
+                        {dia.etapas.map((etapa, etapaIndex) => {
+                          const passo = etapa.match(/^PASSO\s+(\d+)/i)
+                          if (passo) {
+                            const numero = passo[1]
+                            const texto = etapa.replace(/^PASSO\s+\d+\s*[:–—-]?\s*/i, "")
+                            return (
+                              <li key={etapaIndex} className="flex items-start gap-3">
+                                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-primary/30 text-xs font-semibold text-primary">
+                                  {numero}
+                                </span>
+                                <span className="leading-relaxed text-muted-foreground">{texto}</span>
+                              </li>
+                            )
+                          }
+                          return (
+                            <li key={etapaIndex} className="flex items-start gap-3 pl-8">
+                              <span className="leading-relaxed text-muted-foreground">{etapa}</span>
+                            </li>
+                          )
+                        })}
                       </ol>
                     </div>
                   ))}
