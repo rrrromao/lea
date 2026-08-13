@@ -57,7 +57,28 @@ const PLANOS_DE_AULA: PlanoDeAula[] = [
       "Descobrir como a câmera utilizada consegue ou não ser fiel ao que se vê a olho nu",
     ],
     metodologia:
-      "Primeira aula: Discussão de fotos e escolha de cor; Segunda aula: Passeio atento e registro fotográfico; Terceira aula: Seleção das fotos e reflexão sobre a cor escolhida.",
+      `Primeira aula: PASSO 1: VER AS FOTOS PARA DISCUSSÃO
+      Nos materiais deste plano de aula há algumas fotos que podem permitir uma conversa com a turma sobre as cores presentes nelas;
+
+      PASSO 2: ESCOLHA UMA COR
+      Tenha uma estratégia: é uma cor muito abundante no espaço, ou é uma cor escassa etc;
+
+      PASSO 2: BUSQUE A COR
+      Defina um espaço para tirar suas fotos
+      Vale ser um lugar, um trajeto ou um conjunto de espaços
+      Faça um passeio atento por este lugar, prestando atenção em como tal cor aparece por ali;
+
+      PASSO 4: FOTOGRAFE A COR
+      Fotografe apenas coisas que possuam a cor escolhida no Passo 1
+      Tente refinar o seu olhar brincando com como a cor aparece em cada foto: escondendo, centralizando, colocando do lado de outras cores ou no meio da escuridão etc;
+
+      Segunda aula:
+      PASSO 1 – PENSAR COM A FOTO
+      Escreva um texto ou grave um áudio em que você comenta:
+      por que você escolheu tal cor
+      o que você encontrou
+      o que esses elementos e fotos fizeram você sentir
+       O que esta cor ajuda a revelar do lugar em que você está?`,
     materiais: [
       "Câmera fotográfica",
       "Projetor ou computador para exibir as fotos",
