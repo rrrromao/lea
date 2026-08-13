@@ -196,7 +196,7 @@ export default function AtividadePage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BookOpen className="h-5 w-5 text-primary" />
-                  Metodologia
+                  Etapas
                 </CardTitle>
               </CardHeader>
               <CardContent>
