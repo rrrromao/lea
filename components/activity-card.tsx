@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Clock, Star, Users } from "lucide-react"
+import { Clock, Users } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import type { PlanoDeAula } from "@/lib/types"
@@ -27,10 +27,6 @@ export function ActivityCard({ atividade }: ActivityCardProps) {
             >
               {atividade.linguagemArtistica}
             </Badge>
-            <div className="flex items-center gap-1 text-sm text-muted-foreground">
-              <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-              <span className="font-medium">{atividade.avaliacaoMedia.toFixed(1)}</span>
-            </div>
           </div>
           <h3 className="mt-2 line-clamp-2 text-lg font-semibold leading-snug group-hover:text-primary">
             {atividade.titulo}
@@ -49,9 +45,6 @@ export function ActivityCard({ atividade }: ActivityCardProps) {
           <div className="flex items-center gap-1">
             <Clock className="h-3.5 w-3.5" />
             <span>{atividade.duracao}</span>
-          </div>
-          <div className="ml-auto text-xs">
-            {atividade.numeroAvaliacoes} {atividade.numeroAvaliacoes === 1 ? "avaliação" : "avaliações"}
           </div>
         </CardFooter>
       </Card>
