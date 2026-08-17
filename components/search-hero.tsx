@@ -14,6 +14,18 @@ export function SearchHero({ busca, onBuscaChange, totalResultados }: SearchHero
     <section className="border-b border-border/40 bg-muted/30">
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="mx-auto max-w-2xl text-center">
+          <div className="mb-8 grid grid-cols-2 gap-4">
+            <img
+              src="/logo-parque-de-planos.jpeg"
+              alt="Parque de Planos"
+              className="h-40 w-full rounded-lg object-contain"
+            />
+            <img
+              src="/logo-parque-de-planos-imagem.jpeg"
+              alt="Parque de Planos"
+              className="h-40 w-full rounded-lg object-contain"
+            />
+          </div>
           <h1 className="text-3xl font-bold tracking-tight text-balance md:text-4xl lg:text-5xl">
             Encontre um plano de aula para se inspirar!
           </h1>
