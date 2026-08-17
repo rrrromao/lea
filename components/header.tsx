@@ -1,6 +1,13 @@
 "use client"
 
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu"
 
 export function Header() {
   return (
@@ -26,6 +33,32 @@ export function Header() {
           >
             Sobre
           </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Menu
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem asChild>
+                <a href="https://www.leauerj.com" target="_blank" rel="noopener noreferrer">
+                  Site do LEA
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href="https://www.instagram.com/leaujerj" target="_blank" rel="noopener noreferrer">
+                  Instagram do LEA
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href="mailto:udtlea@gmail.com">Entre em contato com o LEA</a>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
       </div>
     </header>

@@ -1,6 +1,6 @@
 "use client"
 
-import { Search } from "lucide-react"
+import { ChevronDown, Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 
 interface SearchHeroProps {
@@ -14,23 +14,18 @@ export function SearchHero({ busca, onBuscaChange, totalResultados }: SearchHero
     <section className="border-b border-border/40 bg-muted/30">
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="mb-8 grid grid-cols-2 gap-4">
+          <div className="mb-8 flex justify-center">
             <img
-              src="/logo-parque-de-planos.jpeg"
+              src="/logo-parque-de-planos.png"
               alt="Parque de Planos"
-              className="h-40 w-full rounded-lg object-contain"
-            />
-            <img
-              src="/logo-parque-de-planos-imagem.jpeg"
-              alt="Parque de Planos"
-              className="h-40 w-full rounded-lg object-contain"
+              className="h-40 w-auto rounded-lg object-contain"
             />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-balance md:text-4xl lg:text-5xl">
             Encontre um plano de aula para se inspirar!
           </h1>
           <p className="mt-4 text-muted-foreground text-pretty md:text-lg">
-            Explore nossa coleção de atividades para Artes: audiovisual, dança, música, teatro visuais e mais! 
+            Explore nossa coleção de atividades para Artes: audiovisual, dança, música, teatro visuais e mais!{" "}
             Planejadas por professores, para professores.
           </p>
           <div className="relative mt-8">
@@ -46,6 +41,9 @@ export function SearchHero({ busca, onBuscaChange, totalResultados }: SearchHero
           <p className="mt-4 text-sm text-muted-foreground">
             {totalResultados} {totalResultados === 1 ? "atividade encontrada" : "atividades encontradas"}
           </p>
+          <div className="mt-3 flex justify-center">
+            <ChevronDown className="h-6 w-6 animate-bounce text-muted-foreground" />
+          </div>
         </div>
       </div>
     </section>
