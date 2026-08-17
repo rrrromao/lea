@@ -29,6 +29,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip"
 import { fetchPlanosDeAula } from "@/lib/data"
 import { parseMetodologia } from "@/lib/metodologia"
 
@@ -179,6 +180,16 @@ export default function AtividadePage() {
                 <CardTitle className="flex items-center gap-2">
                   <Target className="h-5 w-5 text-primary" />
                   Desejos
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <span className="flex h-5 w-5 cursor-help items-center justify-center rounded-full border border-muted-foreground/50 text-[11px] font-bold text-muted-foreground">
+                        ?
+                      </span>
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-sm text-sm leading-relaxed">
+                      Aqui geralmente se falam de objetivos, mas abordamos como "desejos" pois não queremos forçar um alvo a ser atingido. Temos desejos de como as coisas podem vir a ocorrer, mas tais desejos podem ser ressignificados, inclusive por entrar em contato com outros desejos. Ainda, no meio do caminho, podemos perceber outras potências e querer segui-las e este é o processo educativo que queremos construir.
+                    </TooltipContent>
+                  </Tooltip>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -198,6 +209,16 @@ export default function AtividadePage() {
                 <CardTitle className="flex items-center gap-2">
                   <BookOpen className="h-5 w-5 text-primary" />
                   Como?
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <span className="flex h-5 w-5 cursor-help items-center justify-center rounded-full border border-muted-foreground/50 text-[11px] font-bold text-muted-foreground">
+                        ?
+                      </span>
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-sm text-sm leading-relaxed">
+                      Como? É uma pergunta que propomos que guie a leitura destes pontos. Perguntar-se "como?" é um dos desafios para fazer qualquer coisa, pois as condições, os contextos e desafios se colocam a todo o tempo, o que recoloca a pergunta "como?". Mais do que mostrar como fazer, colocamos uma forma de se perguntar como fazer e esperamos ao menos mostrar uma forma de não fazer, o que já é um caminho a menos que pode te ajudar a encontrar o seu próprio caminho.
+                    </TooltipContent>
+                  </Tooltip>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -240,6 +261,16 @@ export default function AtividadePage() {
                 <CardTitle className="flex items-center gap-2">
                   <Package className="h-5 w-5 text-primary" />
                   Ingredientes
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <span className="flex h-5 w-5 cursor-help items-center justify-center rounded-full border border-muted-foreground/50 text-[11px] font-bold text-muted-foreground">
+                        ?
+                      </span>
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-sm text-sm leading-relaxed">
+                      Como em toda receita, ingredientes podem ser trocados, substituídos, outras receitas podem nascer a partir dos ingredientes que se tem disponível.
+                    </TooltipContent>
+                  </Tooltip>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -273,6 +304,16 @@ export default function AtividadePage() {
                 <CardTitle className="flex items-center gap-2">
                   <ListChecks className="h-5 w-5 text-primary" />
                   Criar memórias
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <span className="flex h-5 w-5 cursor-help items-center justify-center rounded-full border border-muted-foreground/50 text-[11px] font-bold text-muted-foreground">
+                        ?
+                      </span>
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-sm text-sm leading-relaxed">
+                      Avaliar nada mais é do que criar uma memória do processo de aprendizagem ou de sua ausência. Seja para quem conduz o processo educativo, seja para quem está como estudante, criar memórias é o que importa, mesmo que seja sobre o que ainda se falta aprender.
+                    </TooltipContent>
+                  </Tooltip>
                 </CardTitle>
               </CardHeader>
               <CardContent>
