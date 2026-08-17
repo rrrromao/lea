@@ -178,7 +178,7 @@ export default function AtividadePage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Target className="h-5 w-5 text-primary" />
-                  Objetivos
+                  Desejos
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -197,7 +197,7 @@ export default function AtividadePage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BookOpen className="h-5 w-5 text-primary" />
-                  Etapas
+                  Como?
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -239,7 +239,7 @@ export default function AtividadePage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Package className="h-5 w-5 text-primary" />
-                  Materiais Necessários
+                  Ingredientes
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -272,7 +272,7 @@ export default function AtividadePage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <ListChecks className="h-5 w-5 text-primary" />
-                  Avaliação
+                  Criar memórias
                 </CardTitle>
               </CardHeader>
               <CardContent>
