@@ -337,7 +337,7 @@ export default function AtividadePage() {
                     <User className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground">Autor</p>
+                    <p className="text-xs text-muted-foreground">Autoria</p>
                     <Button
                       variant="link"
                       className="h-auto p-0 text-sm font-medium"
