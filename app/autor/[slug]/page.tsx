@@ -4,13 +4,14 @@ import { Header } from "@/components/header"
 import { AUTORES } from "@/lib/data"
 
 interface AutorPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
-export default function AutorPage({ params }: AutorPageProps) {
-  const autor = AUTORES[params.slug]
+export default async function AutorPage({ params }: AutorPageProps) {
+  const { slug } = await params
+  const autor = AUTORES[slug]
 
   return (
     <div className="min-h-screen bg-background">
@@ -24,7 +25,7 @@ export default function AutorPage({ params }: AutorPageProps) {
 
           <h1 className="mt-6 text-3xl font-bold">Sobre o autor</h1>
           <p className="mt-2 text-lg text-muted-foreground">
-            {autor ? autor.nome : decodeURIComponent(params.slug).replace(/-/g, " ")}
+            {autor ? autor.nome : decodeURIComponent(slug).replace(/-/g, " ")}
           </p>
 
           <div className="mt-6 space-y-4 text-muted-foreground">

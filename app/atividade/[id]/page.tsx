@@ -275,12 +275,14 @@ export default function AtividadePage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <ul className="grid gap-2 sm:grid-cols-2">
-                  {atividade.materiais.map((material, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                      <span className="text-sm">{material}</span>
-                    </li>
-                  ))}
+                  {[...atividade.materiais, ...atividade.recursos].map(
+                    (item, index) => (
+                      <li key={index} className="flex items-center gap-2">
+                        <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+                        <span className="text-sm">{item}</span>
+                      </li>
+                    ),
+                  )}
                 </ul>
                 {atividade.repositorioUrl && (
                   <Button asChild variant="outline" size="sm">
@@ -412,20 +414,7 @@ export default function AtividadePage() {
               </CardContent>
             </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base">Recursos Necessários</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {atividade.recursos.map((recurso) => (
-                    <Badge key={recurso} variant="outline">
-                      {recurso}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+
           </div>
         </div>
       </main>
