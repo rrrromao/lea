@@ -28,7 +28,7 @@ export function ActivityCard({ atividade }: ActivityCardProps) {
               {atividade.linguagemArtistica}
             </Badge>
           </div>
-          <h3 className="mt-2 line-clamp-2 text-lg font-semibold leading-snug group-hover:text-primary">
+          <h3 className="mt-2 line-clamp-3 text-lg font-semibold leading-snug group-hover:text-primary">
             {atividade.titulo}
           </h3>
         </CardHeader>

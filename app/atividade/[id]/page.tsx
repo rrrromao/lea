@@ -154,7 +154,7 @@ export default function AtividadePage() {
             <Separator />
 
             {atividade.videoUrl && (
-              <Card>
+              <Card className="hidden">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <PlayCircle className="h-5 w-5 text-primary" />
