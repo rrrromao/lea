@@ -354,7 +354,12 @@ export default function AtividadePage() {
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground">Edição</p>
-                      <p className="text-sm font-medium">{atividade.edicao}</p>
+                      <Link
+                        href={`/autor/${slugifyNome(atividade.edicao)}`}
+                        className="text-sm font-medium text-primary hover:underline"
+                      >
+                        {atividade.edicao}
+                      </Link>
                     </div>
                   </div>
                 )}
@@ -390,18 +395,7 @@ export default function AtividadePage() {
               </CardContent>
               </Card>
 
-              {atividade.autorBio && (
-              <Card>
-              <CardHeader>
-                <CardTitle className="text-base">Sobre {atividade.autor}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {atividade.autorBio}
-                </p>
-              </CardContent>
-              </Card>
-              )}
+
 
               <Card>
               <CardHeader>

@@ -17,7 +17,6 @@ export interface PlanoDeAula {
   numeroAvaliacoes: number
   videoUrl?: string
   repositorioUrl?: string
-  autorBio?: string
   edicao?: string
 }
 

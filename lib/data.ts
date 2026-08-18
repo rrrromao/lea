@@ -216,13 +216,26 @@ const PLANOS_DE_AULA: PlanoDeAula[] = [
     ],
     autor: "Barbara Ricciotti",
     edicao: "Rafael Romão",
-    autorBio:
-      "Barbara Ricciotti é artista visual, bailarina e professora. Nascida em Cuiabá, sob o sol do dia de Yemanjá, se mudou para o Rio de Janeiro em busca de se aprimorar como artista. Bacharela em Artes Visuais pela Universidade do Estado do Rio de Janeiro e atualmente concluinte de licenciatura em Artes Visuais pela mesma instituição, também possui formação profissional em dança pela Escola Estadual de Dança Maria Olenewa, do Theatro Municipal do Rio de Janeiro, e formação técnica em Eventos pelo Instituto Federal de Mato Grosso. Sua experiência profissional reúne atuação artística, pedagógica e de produção cultural.",
     dataCriacao: "2026-08-13",
     avaliacaoMedia: 0,
     numeroAvaliacoes: 0,
   },
 ]
+
+export const AUTORES: Record<string, { nome: string; bio: string }> = {
+  "barbara-ricciotti": {
+    nome: "Barbara Ricciotti",
+    bio: "Barbara Ricciotti é artista visual, bailarina e professora. Nascida em Cuiabá, sob o sol do dia de Yemanjá, se mudou para o Rio de Janeiro em busca de se aprimorar como artista. Bacharela em Artes Visuais pela Universidade do Estado do Rio de Janeiro e atualmente concluinte de licenciatura em Artes Visuais pela mesma instituição, também possui formação profissional em dança pela Escola Estadual de Dança Maria Olenewa, do Theatro Municipal do Rio de Janeiro, e formação técnica em Eventos pelo Instituto Federal de Mato Grosso. Sua experiência profissional reúne atuação artística, pedagógica e de produção cultural.",
+  },
+  "rafael-romao": {
+    nome: "Rafael Romão",
+    bio: `Licenciado e mestre em Cinema e Audiovisual pela UFF e PPGCINE-UFF, doutorando em Educação pelo PROPed-UERJ, e bolsista técnico pelo programa Qualitec InovUerj no Laboratório de Ensino da Arte da Uerj. Editor do periódico A Barca. Roteirista do longa-metragem A Fera na Selva (2019), Diretor-assistente do longa-metragem Cartografia das Ondas (2025) e orientador de mais de cem documentários estudantis produzidos em Realidade Virtual, sendo quatro deles exibidos em eventos da Assembleia Geral da ONU em Nova Iorque. Trabalhou com educação audiovisual em ONGs, escolas do ensino básico, técnico e superior.
+
+É um profissional criativo que atravessa as seguintes áreas: Audiovisual, Design, Escrita, Arte-Educação e Educomunicação. Já trabalhei em TVs, Escolas e projetos multimídias; Licenciado em Cinema e Audiovisual pela UFF e Tecnólogo em Análise e Desenvolvimento de Sistemas pela UNESA. Mestre em Cinema e Audiovisual pelo PPGCINE-UFF. Especialista em Docência e Gestão do Ensino Superior.
+
+Trabalhou como Especialista em Tecnologia e Inovação na ONG Recode, misturando educação, inteligência artificial e realidade virtual. Roteirista do longa-metragem A Fera na Selva (2019) e orientador de mais de cem documentários estudantis produzidos em Realidade Virtual no projeto Cineastas 360°, realizado em parceria com o Facebook Brasil, sendo quatro deles exibidos em eventos da Assembleia Geral da ONU em Nova Iorque. Animador do projeto de VR “Aqui/lá” (PROAC VR) e diretor do curta institucional em VR “Desemaranhadores” para o Instituto PHI. Coordenei a abertura da graduação do Bacharelado em Cinema da FACESG, enquanto também fui professor da graduação em Teatro e pude explorar diversas dimensões da colaboração criadora com estudantes.`,
+  },
+}
 
 export async function fetchPlanosDeAula(): Promise<PlanoDeAula[]> {
   return PLANOS_DE_AULA
